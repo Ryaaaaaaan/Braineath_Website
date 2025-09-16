@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braineath - Votre compagnon bien-être mental</title>
+    <meta name="description" content="Découvrez Braineath, l'application de bien-être mental qui combine respiration guidée, journal émotionnel et outils thérapeutiques pour une vie plus sereine.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icons/Icon-iOS-Default-1024x1024@1x.png">
+    <link rel="apple-touch-icon" href="assets/icons/Icon-iOS-Default-1024x1024@1x.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Préchargement des polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=SF+Pro+Text:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation en forme de pill -->
+    <header class="header-pill">
+        <nav class="nav-container">
+            <div class="nav-pill">
+                <div class="nav-slider" id="navSlider"></div>
+                <button class="nav-item active" data-section="hero">Accueil</button>
+                <button class="nav-item" data-section="features">Fonctionnalités</button>
+                <button class="nav-item" data-section="screenshots">Aperçus</button>
+                <button class="nav-item" data-section="benefits">Avantages</button>
+                <button class="nav-item" data-section="contact">Contact</button>
+            </div>
+
+            <div class="theme-toggle-container">
+                <button class="theme-toggle" aria-label="Basculer le thème">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb">
+                            <span class="theme-emoji">☀️</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Section Hero -->
+    <section id="hero" class="hero-section">
+        <div class="hero-background">
+            <div class="hero-video-bg"></div>
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+            <div class="gradient-orb orb-4"></div>
+        </div>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <img src="assets/icons/Icon-iOS-TintedLight-1024x1024@1x.png" alt="Braineath" class="badge-icon-img">
+                    <span>Nouvelle approche du bien-être mental</span>
+                </div>
+
+                <h1 class="hero-title">
+                    <span class="title-line">Respirez.</span>
+                    <span class="title-line">Ressentez.</span>
+                    <span class="title-line gradient-text">Épanouissez-vous.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Braineath combine respiration guidée, journal émotionnel et outils thérapeutiques
+                    pour vous accompagner vers un bien-être durable. Une approche scientifique
+                    dans une expérience Apple-like.
+                </p>
+
+                <div class="hero-actions">
+                    <button class="cta-primary">
+                        <img src="assets/icons/Icon-iOS-ClearLight-1024x1024@1x.png" alt="App" class="cta-icon-img">
+                        <span>Télécharger l'App</span>
+                        <span class="cta-badge">Bientôt</span>
+                    </button>
+                    <button class="cta-secondary">
+                        <span>Découvrir les fonctionnalités</span>
+                        <span class="cta-arrow">↓</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="breathing-animation">
+                    <div class="breath-circle breath-circle-1"></div>
+                    <div class="breath-circle breath-circle-2"></div>
+                    <div class="breath-circle breath-circle-3"></div>
+                    <div class="breath-circle breath-circle-4"></div>
+                    <div class="breath-center">
+                        <div class="zen-symbol">
+                            <div class="zen-circle"></div>
+                            <div class="zen-dot"></div>
+                        </div>
+                        <span class="breath-text">Inspirez</span>
+                    </div>
+                    <div class="breathing-particles"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-dot"></div>
+        </div>
+    </section>
+
+    <!-- Section Fonctionnalités -->
+    <section id="features" class="features-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Une approche complète du bien-être</h2>
+                <p class="section-subtitle">
+                    Découvrez les fonctionnalités qui font de Braineath votre compagnon quotidien
+                    pour une meilleure santé mentale.
+                </p>
+
+                <!-- Interactive Feature Slider -->
+                <div class="feature-slider-container">
+                    <div class="feature-slider">
+                        <div class="slider-track" id="featureSliderTrack">
+                            <div class="slide active" data-feature="breathing">
+                                <img src="assets/icons/Icon-iOS-TintedLight-1024x1024@1x.png" alt="Respiration" class="slide-icon-img">
+                                <div class="slide-title">Respiration Guidée</div>
+                                <div class="slide-description">Techniques scientifiques avec animations</div>
+                            </div>
+                            <div class="slide" data-feature="mood">
+                                <div class="slide-icon">❤️</div>
+                                <div class="slide-title">Journal Émotionnel</div>
+                                <div class="slide-description">Suivi personnalisé de votre humeur</div>
+                            </div>
+                            <div class="slide" data-feature="therapy">
+                                <div class="slide-icon">🧠</div>
+                                <div class="slide-title">Thérapie Cognitive</div>
+                                <div class="slide-description">Outils de TCC intégrés</div>
+                            </div>
+                            <div class="slide" data-feature="sos">
+                                <img src="assets/icons/Icon-iOS-Dark-1024x1024@1x.png" alt="Urgence" class="slide-icon-img slide-icon-sos">
+                                <div class="slide-title">Mode Urgence</div>
+                                <div class="slide-description">Accès rapide en cas de crise</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-btn prev" id="prevSlide">←</button>
+                        <div class="slider-dots" id="sliderDots"></div>
+                        <button class="slider-btn next" id="nextSlide">→</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fonctionnalités principales avec layout moderne -->
+            <div class="features-showcase">
+                <!-- Feature principale -->
+                <div class="feature-hero">
+                    <div class="feature-content">
+                        <div class="feature-badge">🫁 Principal</div>
+                        <h3 class="feature-hero-title">Respiration Guidée</h3>
+                        <p class="feature-hero-description">
+                            Techniques scientifiques de respiration avec animations apaisantes.
+                            6 patterns incluant 4-7-8, cohérence cardiaque et box breathing pour réduire le stress instantanément.
+                        </p>
+                        <div class="feature-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">6</span>
+                                <span class="stat-label">Patterns</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">1-15</span>
+                                <span class="stat-label">Minutes</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-visual">
+                        <div class="breathing-animation">
+                            <div class="zen-symbol">
+                                <div class="zen-circle"></div>
+                                <div class="zen-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Features secondaires en grille compacte -->
+                <div class="features-grid-compact">
+                    <div class="feature-item">
+                        <div class="feature-icon">❤️</div>
+                        <h4>Journal Émotionnel</h4>
+                        <p>Suivez vos émotions et visualisez vos tendances bien-être</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🧠</div>
+                        <h4>Thérapie Cognitive</h4>
+                        <p>Outils TCC pour restructurer vos pensées automatiques</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📔</div>
+                        <h4>Espace Privé</h4>
+                        <p>Journal sécurisé pour gratitude et développement personnel</p>
+                    </div>
+                    <div class="feature-item urgent">
+                        <div class="feature-icon">🚨</div>
+                        <h4>Mode SOS</h4>
+                        <p>Accès immédiat aux techniques de gestion de crise</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Screenshots/Mockups -->
+    <section id="screenshots" class="screenshots-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Design qui inspire la sérénité</h2>
+                <p class="section-subtitle">
+                    Interface Apple-like avec glassmorphisme et animations fluides
+                    pour une expérience utilisateur exceptionnelle.
+                </p>
+            </div>
+
+            <div class="screenshots-container">
+                <div class="phone-mockup mockup-1">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <img src="assets/screenshots/dashboard-light.png" alt="Dashboard Braineath" class="mockup-screenshot">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-mockup mockup-2">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <img src="assets/screenshots/breathing-light.png" alt="Respiration Braineath" class="mockup-screenshot">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="phone-mockup mockup-3">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <img src="assets/screenshots/journal-light.png" alt="Journal Braineath" class="mockup-screenshot">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Avantages -->
+    <section id="benefits" class="benefits-section">
+        <div class="section-container">
+            <div class="benefits-content">
+                <div class="benefits-text">
+                    <h2 class="section-title">Pourquoi choisir Braineath ?</h2>
+                    <div class="benefits-list">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🎯</div>
+                            <div class="benefit-content">
+                                <h4>Approche scientifique</h4>
+                                <p>Basé sur la TCC et les neurosciences, avec des techniques validées cliniquement.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🔒</div>
+                            <div class="benefit-content">
+                                <h4>Confidentialité totale</h4>
+                                <p>Vos données restent privées. Stockage local sécurisé sans collecte de données personnelles.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">📱</div>
+                            <div class="benefit-content">
+                                <h4>Design Apple-like</h4>
+                                <p>Interface intuitive et apaisante, conçue pour encourager l'usage quotidien.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">⚡</div>
+                            <div class="benefit-content">
+                                <h4>Actions rapides</h4>
+                                <p>Accès immédiat aux outils essentiels, même en situation de stress intense.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">📈</div>
+                            <div class="benefit-content">
+                                <h4>Suivi personnalisé</h4>
+                                <p>Insights intelligents et recommandations adaptées à votre progression.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit-item">
+                            <div class="benefit-icon">🌙</div>
+                            <div class="benefit-content">
+                                <h4>Mode sombre adaptatif</h4>
+                                <p>Interface qui s'adapte automatiquement à l'heure et à vos préférences.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefits-visual">
+                    <div class="floating-elements">
+                        <div class="floating-card card-1">
+                            <div class="card-icon">🧘‍♀️</div>
+                            <div class="card-text">12 jours de suite</div>
+                        </div>
+                        <div class="floating-card card-2">
+                            <div class="card-icon">💚</div>
+                            <div class="card-text">Humeur +40%</div>
+                        </div>
+                        <div class="floating-card card-3">
+                            <div class="card-icon">😴</div>
+                            <div class="card-text">Sommeil amélioré</div>
+                        </div>
+                        <div class="floating-card card-4">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-text">Stress -60%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact-section">
+        <div class="section-container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2 class="section-title">Restez informé</h2>
+                    <p class="section-subtitle">
+                        Soyez les premiers à découvrir Braineath. Inscrivez-vous pour recevoir
+                        les mises à jour sur le lancement et les fonctionnalités à venir.
+                    </p>
+                </div>
+
+                <div class="newsletter-form">
+                    <div class="form-container">
+                        <input
+                            type="email"
+                            class="email-input"
+                            placeholder="votre@email.com"
+                            required
+                        >
+                        <button class="submit-btn">
+                            <span>S'inscrire</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                    </div>
+                    <p class="form-note">
+                        Aucun spam. Seulement les infos importantes sur Braineath.
+                    </p>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <span class="social-icon">📧</span>
+                        <span>Email</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <span class="social-icon">🐦</span>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="#" class="social-link">
+                        <span class="social-icon">💼</span>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/icons/Icon-iOS-TintedLight-1024x1024@1x.png" alt="Braineath" class="brand-icon-img">
+                    <span class="brand-name">Braineath</span>
+                </div>
+
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Confidentialité</a>
+                    <a href="#" class="footer-link">Conditions</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+
+                <div class="footer-info">
+                    <p>&copy; 2024 Braineath. Conçu avec ❤️ pour votre bien-être.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script-clean.js"></script>
+</body>
+</html>
