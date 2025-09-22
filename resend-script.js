@@ -31,15 +31,16 @@ function initializeTheme() {
 
   // Récupérer le thème sauvegardé
   const savedTheme = localStorage.getItem('braineath-theme');
-  if (savedTheme && savedTheme !== 'auto') {
+  if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
     state.theme = savedTheme;
     document.documentElement.setAttribute('data-theme', savedTheme);
   } else {
-    state.theme = 'auto';
-    updateSystemTheme(prefersDark.matches);
+    // Par défaut, utiliser les préférences système
+    state.theme = prefersDark.matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', state.theme);
   }
 
-  updateThemeEmoji();
+  updateThemeToggle();
 
   // Event listeners
   themeToggle?.addEventListener('click', (e) => {
@@ -52,7 +53,7 @@ function initializeTheme() {
   prefersDark.addEventListener('change', (e) => {
     if (state.theme === 'auto') {
       updateSystemTheme(e.matches);
-      updateThemeEmoji();
+      updateThemeToggle();
     }
   });
 }
@@ -63,21 +64,15 @@ function toggleTheme(event) {
     event.stopPropagation();
   }
 
-  const themes = ['light', 'dark', 'auto'];
-  const currentIndex = themes.indexOf(state.theme);
-  const nextTheme = themes[(currentIndex + 1) % themes.length];
+  // Toggle simple entre light et dark
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
 
   state.theme = nextTheme;
   localStorage.setItem('braineath-theme', nextTheme);
+  document.documentElement.setAttribute('data-theme', nextTheme);
 
-  if (nextTheme === 'auto') {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    updateSystemTheme(prefersDark);
-  } else {
-    document.documentElement.setAttribute('data-theme', nextTheme);
-  }
-
-  updateThemeEmoji();
+  updateThemeToggle();
   animateThemeToggle();
 }
 
@@ -85,11 +80,20 @@ function updateSystemTheme(isDark) {
   document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
 }
 
-function updateThemeEmoji() {
-  const emoji = $('.theme-emoji');
-  if (emoji) {
+function updateThemeToggle() {
+  const toggle = $('.theme-toggle');
+  const track = $('.toggle-track');
+  const thumb = $('.toggle-thumb');
+
+  if (toggle && track && thumb) {
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    emoji.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+    const isDark = currentTheme === 'dark';
+
+    // Animer le thumb
+    thumb.style.transform = isDark ? 'translateX(24px)' : 'translateX(0)';
+
+    // Mettre à jour les classes pour le style
+    toggle.classList.toggle('dark-mode', isDark);
   }
 }
 

@@ -335,62 +335,6 @@ body {
   }
 }
 
-/* Formes géométriques flottantes */
-.geometric-shapes {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.shape {
-  position: absolute;
-  opacity: 0.1;
-  animation: geometric-float 15s ease-in-out infinite;
-}
-
-.shape-triangle {
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 25px solid rgba(139, 95, 191, 0.3);
-  top: 30%;
-  left: 20%;
-  animation-delay: 0s;
-  animation-duration: 20s;
-}
-
-
-
-.shape-hexagon {
-  width: 24px;
-  height: 24px;
-  background: rgba(167, 148, 249, 0.2);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  top: 20%;
-  left: 90%;
-  animation-delay: 12s;
-  animation-duration: 22s;
-}
-
-@keyframes geometric-float {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.1;
-  }
-  25% {
-    transform: translateY(-50px) rotate(90deg);
-    opacity: 0.2;
-  }
-  50% {
-    transform: translateY(-30px) rotate(180deg);
-    opacity: 0.15;
-  }
-  75% {
-    transform: translateY(-80px) rotate(270deg);
-    opacity: 0.25;
-  }
-}
 
 /* Orbes d'énergie */
 .energy-orbs {
@@ -410,9 +354,6 @@ body {
   opacity: 0.06;
 }
 
-[data-theme="light"] .shape {
-  opacity: 0.06;
-}
 
 
 
@@ -1441,45 +1382,84 @@ body {
 }
 
 .theme-toggle {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: transparent;
+  border: none;
   cursor: pointer;
+  padding: 4px;
+  border-radius: 20px;
   transition: all 0.3s ease;
-  color: var(--text-secondary);
-  backdrop-filter: blur(10px);
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
   position: relative;
   z-index: 2;
 }
 
-.theme-toggle:hover {
-  background: rgba(139, 95, 191, 0.15);
-  color: var(--text-primary);
+.toggle-track {
+  width: 48px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.toggle-thumb {
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sun-icon {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.moon-icon {
+  opacity: 0;
+  position: absolute;
+  transition: opacity 0.3s ease;
+}
+
+.theme-toggle.dark-mode .toggle-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle.dark-mode .toggle-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle.dark-mode .sun-icon {
+  opacity: 0;
+}
+
+.theme-toggle.dark-mode .moon-icon {
+  opacity: 1;
+}
+
+[data-theme="light"] .toggle-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .toggle-thumb {
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle:hover .toggle-track {
+  background: rgba(139, 95, 191, 0.2);
   transform: scale(1.05);
-  box-shadow:
-    0 4px 16px rgba(139, 95, 191, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="light"] .theme-toggle {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-
-.theme-emoji {
-  font-size: 1.1rem;
-  transition: transform 0.3s ease;
 }
 
 /* ===========================
@@ -1674,12 +1654,13 @@ body {
 
 .phone-showcase {
   position: relative;
+  z-index: 2;
 }
 
 
 .phone-frame {
-  width: 300px;
-  height: 600px;
+  width: 350px;
+  height: 700px;
   background: var(--bg-secondary);
   border: 2px solid var(--border);
   border-radius: 40px;
@@ -1730,21 +1711,24 @@ body {
 }
 
 .stat-1 {
-  top: 10%;
-  left: -20%;
+  top: 60%;
+  left: -15%;
   animation-delay: 0s;
+  z-index: 1;
 }
 
 .stat-2 {
   top: 50%;
-  right: -25%;
+  right: -20%;
   animation-delay: 2s;
+  z-index: 1;
 }
 
 .stat-3 {
-  bottom: 20%;
-  left: -15%;
+  bottom: 25%;
+  left: -10%;
   animation-delay: 4s;
+  z-index: 1;
 }
 
 .stat-number {
@@ -1904,6 +1888,71 @@ body {
   box-shadow: 0 20px 40px rgba(139, 95, 191, 0.2);
 }
 
+/* Couleurs spécifiques pour chaque carte */
+.feature-card:nth-child(1) {
+  background: linear-gradient(135deg, rgba(108, 149, 232, 0.03) 0%, rgba(165, 148, 249, 0.03) 100%);
+  border-color: rgba(108, 149, 232, 0.1);
+}
+
+.feature-card:nth-child(1):hover {
+  background: linear-gradient(135deg, rgba(108, 149, 232, 0.08) 0%, rgba(165, 148, 249, 0.08) 100%);
+  border-color: rgba(108, 149, 232, 0.3);
+  box-shadow: 0 20px 40px rgba(108, 149, 232, 0.2);
+}
+
+.feature-card:nth-child(1) .feature-icon {
+  background: linear-gradient(135deg, rgba(108, 149, 232, 0.1) 0%, rgba(165, 148, 249, 0.1) 100%);
+  color: #6C95E8;
+}
+
+.feature-card:nth-child(2) {
+  background: linear-gradient(135deg, rgba(245, 169, 184, 0.03) 0%, rgba(159, 226, 191, 0.03) 100%);
+  border-color: rgba(245, 169, 184, 0.1);
+}
+
+.feature-card:nth-child(2):hover {
+  background: linear-gradient(135deg, rgba(245, 169, 184, 0.08) 0%, rgba(159, 226, 191, 0.08) 100%);
+  border-color: rgba(245, 169, 184, 0.3);
+  box-shadow: 0 20px 40px rgba(245, 169, 184, 0.2);
+}
+
+.feature-card:nth-child(2) .feature-icon {
+  background: linear-gradient(135deg, rgba(245, 169, 184, 0.1) 0%, rgba(159, 226, 191, 0.1) 100%);
+  color: #F5A9B8;
+}
+
+.feature-card:nth-child(3) {
+  background: linear-gradient(135deg, rgba(253, 203, 110, 0.03) 0%, rgba(159, 226, 191, 0.03) 100%);
+  border-color: rgba(253, 203, 110, 0.1);
+}
+
+.feature-card:nth-child(3):hover {
+  background: linear-gradient(135deg, rgba(253, 203, 110, 0.08) 0%, rgba(159, 226, 191, 0.08) 100%);
+  border-color: rgba(253, 203, 110, 0.3);
+  box-shadow: 0 20px 40px rgba(253, 203, 110, 0.2);
+}
+
+.feature-card:nth-child(3) .feature-icon {
+  background: linear-gradient(135deg, rgba(253, 203, 110, 0.1) 0%, rgba(159, 226, 191, 0.1) 100%);
+  color: #FDCB6E;
+}
+
+.feature-card:nth-child(4) {
+  background: linear-gradient(135deg, rgba(225, 123, 147, 0.03) 0%, rgba(108, 149, 232, 0.03) 100%);
+  border-color: rgba(225, 123, 147, 0.1);
+}
+
+.feature-card:nth-child(4):hover {
+  background: linear-gradient(135deg, rgba(225, 123, 147, 0.08) 0%, rgba(108, 149, 232, 0.08) 100%);
+  border-color: rgba(225, 123, 147, 0.3);
+  box-shadow: 0 20px 40px rgba(225, 123, 147, 0.2);
+}
+
+.feature-card:nth-child(4) .feature-icon {
+  background: linear-gradient(135deg, rgba(225, 123, 147, 0.1) 0%, rgba(108, 149, 232, 0.1) 100%);
+  color: #E17B93;
+}
+
 .feature-card:nth-child(1):hover {
   transform: translateY(-8px) scale(1.03) rotate(1deg);
 }
@@ -2059,9 +2108,6 @@ body {
     animation-duration: 50s !important;
   }
 
-  .shape {
-    animation-duration: 30s !important;
-  }
 
   .orb {
     animation-duration: 20s !important;
@@ -2215,6 +2261,103 @@ body {
   transform: translateY(-6px) scale(1.02);
   border-color: rgba(139, 95, 191, 0.3);
   box-shadow: 0 16px 32px rgba(139, 95, 191, 0.15);
+}
+
+/* Couleurs spécifiques pour chaque benefit card */
+.benefit-card:nth-child(1) {
+  background: linear-gradient(135deg, rgba(255, 149, 0, 0.03) 0%, rgba(255, 204, 0, 0.03) 100%);
+  border-color: rgba(255, 149, 0, 0.1);
+}
+
+.benefit-card:nth-child(1):hover {
+  background: linear-gradient(135deg, rgba(255, 149, 0, 0.08) 0%, rgba(255, 204, 0, 0.08) 100%);
+  border-color: rgba(255, 149, 0, 0.3);
+  box-shadow: 0 16px 32px rgba(255, 149, 0, 0.2);
+}
+
+.benefit-card:nth-child(1) .benefit-icon {
+  color: #FF9500;
+  text-shadow: 0 0 10px rgba(255, 149, 0, 0.3);
+}
+
+.benefit-card:nth-child(2) {
+  background: linear-gradient(135deg, rgba(52, 199, 89, 0.03) 0%, rgba(48, 209, 88, 0.03) 100%);
+  border-color: rgba(52, 199, 89, 0.1);
+}
+
+.benefit-card:nth-child(2):hover {
+  background: linear-gradient(135deg, rgba(52, 199, 89, 0.08) 0%, rgba(48, 209, 88, 0.08) 100%);
+  border-color: rgba(52, 199, 89, 0.3);
+  box-shadow: 0 16px 32px rgba(52, 199, 89, 0.2);
+}
+
+.benefit-card:nth-child(2) .benefit-icon {
+  color: #34C759;
+  text-shadow: 0 0 10px rgba(52, 199, 89, 0.3);
+}
+
+.benefit-card:nth-child(3) {
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.03) 0%, rgba(64, 156, 255, 0.03) 100%);
+  border-color: rgba(0, 122, 255, 0.1);
+}
+
+.benefit-card:nth-child(3):hover {
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(64, 156, 255, 0.08) 100%);
+  border-color: rgba(0, 122, 255, 0.3);
+  box-shadow: 0 16px 32px rgba(0, 122, 255, 0.2);
+}
+
+.benefit-card:nth-child(3) .benefit-icon {
+  color: #007AFF;
+  text-shadow: 0 0 10px rgba(0, 122, 255, 0.3);
+}
+
+.benefit-card:nth-child(4) {
+  background: linear-gradient(135deg, rgba(255, 59, 48, 0.03) 0%, rgba(255, 69, 58, 0.03) 100%);
+  border-color: rgba(255, 59, 48, 0.1);
+}
+
+.benefit-card:nth-child(4):hover {
+  background: linear-gradient(135deg, rgba(255, 59, 48, 0.08) 0%, rgba(255, 69, 58, 0.08) 100%);
+  border-color: rgba(255, 59, 48, 0.3);
+  box-shadow: 0 16px 32px rgba(255, 59, 48, 0.2);
+}
+
+.benefit-card:nth-child(4) .benefit-icon {
+  color: #FF3B30;
+  text-shadow: 0 0 10px rgba(255, 59, 48, 0.3);
+}
+
+.benefit-card:nth-child(5) {
+  background: linear-gradient(135deg, rgba(162, 132, 94, 0.03) 0%, rgba(172, 142, 104, 0.03) 100%);
+  border-color: rgba(162, 132, 94, 0.1);
+}
+
+.benefit-card:nth-child(5):hover {
+  background: linear-gradient(135deg, rgba(162, 132, 94, 0.08) 0%, rgba(172, 142, 104, 0.08) 100%);
+  border-color: rgba(162, 132, 94, 0.3);
+  box-shadow: 0 16px 32px rgba(162, 132, 94, 0.2);
+}
+
+.benefit-card:nth-child(5) .benefit-icon {
+  color: #A2845E;
+  text-shadow: 0 0 10px rgba(162, 132, 94, 0.3);
+}
+
+.benefit-card:nth-child(6) {
+  background: linear-gradient(135deg, rgba(165, 148, 249, 0.03) 0%, rgba(139, 95, 191, 0.03) 100%);
+  border-color: rgba(165, 148, 249, 0.1);
+}
+
+.benefit-card:nth-child(6):hover {
+  background: linear-gradient(135deg, rgba(165, 148, 249, 0.08) 0%, rgba(139, 95, 191, 0.08) 100%);
+  border-color: rgba(165, 148, 249, 0.3);
+  box-shadow: 0 16px 32px rgba(165, 148, 249, 0.2);
+}
+
+.benefit-card:nth-child(6) .benefit-icon {
+  color: #A594F9;
+  text-shadow: 0 0 10px rgba(165, 148, 249, 0.3);
 }
 
 .benefit-card > * {
